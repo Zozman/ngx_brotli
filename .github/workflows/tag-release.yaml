@@ -13,6 +13,10 @@ jobs:
         with:
           fetch-depth: '0'
 
+      - name: Get Short SHA Of Last Commit
+        id: short
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+
       - name: Bump version and push tag
         uses: anothrNick/github-tag-action@1.52.0
         id: tag
@@ -22,4 +26,4 @@ jobs:
           INITIAL_VERSION: 1.0.0
           WITH_V: true
 
-      - run: echo "${{ steps.tag.outputs.tag }}"
+      - run: echo "Tagged Commit ${{ steps.short.outputs.sha_short }} With Tag ${{ steps.tag.outputs.tag }}"
