@@ -1,9 +1,9 @@
 name: tag-release
 on:
-  push
+  push:
     # Tag a release upon pushing code to the master branch
-    #branches:
-    #  - master
+    branches:
+      - addTaggingAction
   jobs:
     tag:
       runs-on: ubuntu-latest
